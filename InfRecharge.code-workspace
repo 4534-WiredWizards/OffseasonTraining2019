@@ -1,0 +1,11 @@
+{
+	"folders": [{
+		"path": "InfiniteRecharge2020"
+	}],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	},
+	"extensions": {
+		"recommendations": ["wpilibsuite.vscode-wpilib", "vscjava.vscode-java-pack", "robertohuertasm.vscode-icons", "icrawl.discord-vscode"]
+	}
+}
