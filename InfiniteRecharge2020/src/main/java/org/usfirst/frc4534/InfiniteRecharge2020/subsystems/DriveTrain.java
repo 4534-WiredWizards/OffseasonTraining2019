@@ -104,6 +104,22 @@ public class DriveTrain extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public void ArcadeDrive(double speed, double rotation) {
+        diffDrive.arcadeDrive(speed, rotation, true);
+    }
 
+    public void TankDrive(double leftSpeed, double rightSpeed) {
+        diffDrive.tankDrive(leftSpeed, rightSpeed);
+    }
+
+    public void SetShifter(boolean state) {
+        leftShifter.set(state);
+        rightShifter.set(state);
+    }
+
+    public void ToggleShifter() {
+        leftShifter.set(!(leftShifter.get() && rightShifter.get()));
+        rightShifter.set(!(leftShifter.get() && rightShifter.get()));
+    }
 }
 
