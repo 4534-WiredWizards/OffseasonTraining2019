@@ -108,9 +108,8 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void ArcadeDrive(double speed, double rotation) {
-        double newSpeed = scaleSpeed(speed) * maxSpeed;
-        diffDrive.arcadeDrive(newSpeed, rotation, true);
-        lastSpeed = newSpeed;
+        diffDrive.arcadeDrive(speed, rotation, true);
+        lastSpeed = speed;
     }
 
     public void TankDrive(double leftSpeed, double rightSpeed) {
@@ -137,23 +136,5 @@ public class DriveTrain extends Subsystem {
     public void ToggleShifter() {
         leftShifter.set(!(leftShifter.get() && rightShifter.get()));
         rightShifter.set(!(leftShifter.get() && rightShifter.get()));
-    }
-    private double scaleSpeed(double speed) {
-        /*if (Math.abs(speed) <= minSpeed && Math.abs(lastSpeed) <= minSpeed) {
-            return 0;
-    } else*/ if (speed > lastSpeed) {
-            if (Math.abs(speed - lastSpeed) < stepSize) {
-                return speed;
-            } else {
-                return lastSpeed + stepSize;
-            }
-        } else if (speed < lastSpeed) {
-            if (Math.abs(speed - lastSpeed) < stepSize) {
-                return speed;
-            } else {
-                return lastSpeed - stepSize;
-            }
-        }
-        return 0;
     }
 }

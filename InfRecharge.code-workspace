@@ -1,11 +1,20 @@
 {
-	"folders": [{
-		"path": "InfiniteRecharge2020"
-	}],
-	"settings": {
-		"java.configuration.updateBuildConfiguration": "automatic"
-	},
-	"extensions": {
-		"recommendations": ["wpilibsuite.vscode-wpilib", "vscjava.vscode-java-pack", "vscode-icons-team.vscode-icons", "icrawl.discord-vscode","ms-vsliveshare.vsliveshare"]
-	}
+  "folders": [
+    {
+      "path": "InfiniteRecharge2020"
+    }
+  ],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "automatic"
+  },
+  "extensions": {
+    "recommendations": [
+      "wpilibsuite.vscode-wpilib",
+      "vscjava.vscode-java-pack",
+      "vscode-icons-team.vscode-icons",
+      "icrawl.discord-vscode",
+      "ms-vsliveshare.vsliveshare",
+      "vsciot-vscode.vscode-arduino"
+    ]
+  }
 }
