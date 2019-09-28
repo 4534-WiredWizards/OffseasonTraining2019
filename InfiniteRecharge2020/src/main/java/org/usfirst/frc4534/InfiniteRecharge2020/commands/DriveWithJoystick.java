@@ -12,8 +12,6 @@
 package org.usfirst.frc4534.InfiniteRecharge2020.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc4534.InfiniteRecharge2020.Robot;
-
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import java.math.*;
 
 /**
@@ -49,8 +47,8 @@ public class DriveWithJoystick extends Command {
     protected void execute() {
         double speed;
         double rotation;
-        speed = Math.abs(Robot.oi.getXboxController().getX(Hand.kLeft)) >= innerBound ? Robot.oi.getXboxController().getX(Hand.kLeft) : 0;
-        rotation = Math.abs(Robot.oi.getXboxController().getX(Hand.kLeft)) >= innerBound ? Robot.oi.getXboxController().getX(Hand.kLeft) : 0;
+        speed = Math.abs(Robot.oi.getJoystick1().getRawAxis(1)) >= innerBound ? Robot.oi.getJoystick1().getRawAxis(1) : 0;
+        rotation = Math.abs(Robot.oi.getJoystick1().getRawAxis(4)) >= innerBound ? Robot.oi.getJoystick1().getRawAxis(4) : 0;
         Robot.driveTrain.ArcadeDrive(speed, rotation);
     }
 
