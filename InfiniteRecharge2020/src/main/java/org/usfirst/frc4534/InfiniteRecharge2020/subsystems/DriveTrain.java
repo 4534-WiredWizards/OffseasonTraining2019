@@ -160,4 +160,3 @@ public class DriveTrain extends Subsystem {
         return (rightMasterEncoder.getPosition()/2 + rightFollowerEncoder.getPosition()/2);
     }
 }
-
