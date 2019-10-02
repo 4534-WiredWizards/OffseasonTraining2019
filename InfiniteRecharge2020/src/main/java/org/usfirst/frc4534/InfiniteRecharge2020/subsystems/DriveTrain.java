@@ -137,4 +137,15 @@ public class DriveTrain extends Subsystem {
         leftShifter.set(!(leftShifter.get() && rightShifter.get()));
         rightShifter.set(!(leftShifter.get() && rightShifter.get()));
     }
+
+    public double GetLeftEncoders() {
+        return (leftMasterEncoder.getPosition()/2 + leftFollowerEncoder.getPosition()/2);
+    }
+
+    public double GetRightEncoders() {
+        return (rightMasterEncoder.getPosition()/2 + rightFollowerEncoder.getPosition()/2);
+    }
+    public void resetEncoders(){
+        //TODO: Add resetencoders function, it is more complicated than it appears. No native method.
+    }
 }
