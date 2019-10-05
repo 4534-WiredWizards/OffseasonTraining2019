@@ -48,7 +48,7 @@ public class DriveWithJoystick extends Command {
         double speed;
         double rotation;
         speed = Math.abs(Robot.oi.getJoystick1().getRawAxis(1)) >= innerBound ? Robot.oi.getJoystick1().getRawAxis(1) : 0;
-        rotation = Math.abs(Robot.oi.getJoystick1().getRawAxis(4)) >= innerBound ? Robot.oi.getJoystick1().getRawAxis(4) : 0;
+        rotation = Math.abs(Robot.oi.getJoystick1().getRawAxis(4)) >= innerBound ? -Robot.oi.getJoystick1().getRawAxis(4) : 0;
         Robot.driveTrain.ArcadeDrive(speed, rotation);
     }
 
