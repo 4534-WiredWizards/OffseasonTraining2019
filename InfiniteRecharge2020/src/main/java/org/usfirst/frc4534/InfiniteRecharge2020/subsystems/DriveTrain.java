@@ -123,7 +123,7 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void ArcadeDrive(double speed, double rotation) {
-        diffDrive.arcadeDrive(speed, rotation, true);
+        diffDrive.arcadeDrive(speed*maxSpeed, rotation*maxSpeed, true);
         lastSpeed = speed;
     }
 
@@ -137,10 +137,8 @@ public class DriveTrain extends Subsystem {
     }
     
     public void setDemoMode(boolean newDemoMode) {
-        if (!(leftMaster.get() == 0 && rightMaster.get() == 0))
-            return;
         demoMode = newDemoMode;
-        if (demoMode) {
+        if (demoMode == true) {
             maxSpeed = demoSpeed;
         } else {
             maxSpeed = workingSpeed;
