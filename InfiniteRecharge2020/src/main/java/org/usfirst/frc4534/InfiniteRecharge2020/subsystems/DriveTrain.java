@@ -146,6 +146,10 @@ public class DriveTrain extends Subsystem {
         return;
     }
 
+    public double getMaxSpeed() {
+        return maxSpeed;
+    }
+
     public void ToggleShifter() {
         leftShifter.set(!(leftShifter.get() && rightShifter.get()));
         rightShifter.set(!(leftShifter.get() && rightShifter.get()));
