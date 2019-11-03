@@ -14,9 +14,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc4534.InfiniteRecharge2020.Robot;
 import java.math.*;
 
-/**
- *
- */
 public class DriveWithJoystick extends Command {
     protected double innerBound = 0.05;
 
