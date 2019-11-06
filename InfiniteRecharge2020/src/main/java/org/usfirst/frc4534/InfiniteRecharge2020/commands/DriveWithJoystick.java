@@ -44,10 +44,20 @@ public class DriveWithJoystick extends Command {
     protected void execute() {
         double speed;
         double rotation;
+        //Get joystick positions and set speed and rotation to them
+        //Inputs below the inner bound are ignored
         speed = Math.abs(Robot.oi.getJoystick1().getRawAxis(1)) >= innerBound ? Robot.oi.getJoystick1().getRawAxis(1) : 0;
         rotation = Math.abs(Robot.oi.getJoystick1().getRawAxis(4)) >= innerBound ? -Robot.oi.getJoystick1().getRawAxis(4) : 0;
-        Robot.driveTrain.ArcadeDrive(speed, rotation);
-        Robot.driveTrain.SetShifter(Robot.oi.leftJoystick.get());
+        //Go into slow speed mode if left bumper is pressed, slow rotation mode if right bumper is pressed
+        speed = Robot.oi.leftBumper1.get() ? speed * 0.5 : speed;
+        rotation = Robot.oi.rightBumper1.get() ? rotation * 0.5 : rotation;
+        //Descrease speed to 0.85 normal speed, add extra 0.15 from left trigger.
+        speed = speed * 0.85 + 0.15 * Robot.oi.joystick1.getRawAxis(2);
+        //Only move if allowed to.
+        if (Robot.driveTrain.isDrivingAllowed() == true) {
+            Robot.driveTrain.ArcadeDrive(speed, rotation);
+            Robot.driveTrain.SetShifter(Robot.oi.leftJoystick1.get());
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

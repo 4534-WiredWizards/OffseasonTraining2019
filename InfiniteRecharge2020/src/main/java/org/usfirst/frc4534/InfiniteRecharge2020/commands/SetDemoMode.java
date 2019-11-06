@@ -16,7 +16,6 @@ public class SetDemoMode extends Command {
     // eg. requires(chassis);
   }
   boolean newDemoMode;
-  boolean finished = false;
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {

@@ -40,29 +40,45 @@ public class GoToCone extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-       
+        //Switch to cone grip pipeline
+        Robot.limelight.setPipeline(1);
+        //Disable driving
+        Robot.driveTrain.allowDrive(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        //Get angle of crosshair relative to forward, and width in pixels of the yellow bounding box
         angle = Robot.limelight.getXSkew();
         size = Robot.limelight.getYellowBoxHorizontal();
         float speed = 0;
         float rotation = 0;
+        //If angle is high, turn right at propprtional speed
         if (angle > 1) {
             rotation = (float)(angle/22.5 * 0.5 + 0.5);
         }
+        //If angle is low, turn left at proportional speed
         else if (angle < -1) {
             rotation = (float)(angle/22.5 * 0.5 - 0.5);
         }
+        //If the size is less than 120, move closer.
         if (size < 120) {
             speed = (float)0.6;
         }
-        Robot.driveTrain.ArcadeDrive(speed, rotation);
-        if(lastKnownPosition < -15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.ArcadeDrive(0, -0.5);
-        if(lastKnownPosition < 15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.ArcadeDrive(0, 0.5);
-        lastKnownPosition = angle;
+        //Go to cone if it is there
+        if(Robot.limelight.limelightHasTarget()) {
+            Robot.driveTrain.ArcadeDrive(speed, rotation);
+        }
+        //if the cone isnt there, but we are in follow offscreen mode, 
+        //and the cone was most recently at an angle near the edge, turn in that direction without moving forward.
+        if(followOffscreen) {
+            if(lastKnownPosition < -15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.ArcadeDrive(0, -0.5);
+            if(lastKnownPosition < 15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.ArcadeDrive(0, 0.5);
+            //Track last known angle
+            lastKnownPosition = angle;
+        }
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -75,6 +91,7 @@ public class GoToCone extends Command {
     @Override
     protected void end() {
         Robot.driveTrain.TankDrive(0,0);
+        Robot.driveTrain.allowDrive(true);
     }
 
     // Called when another command which requires one or more of the same
@@ -82,5 +99,6 @@ public class GoToCone extends Command {
     @Override
     protected void interrupted() {
         Robot.driveTrain.TankDrive(0,0);
+        Robot.driveTrain.allowDrive(true);
     }
 }
