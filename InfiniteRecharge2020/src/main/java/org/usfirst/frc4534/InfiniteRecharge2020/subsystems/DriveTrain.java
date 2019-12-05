@@ -134,12 +134,12 @@ public class DriveTrain extends Subsystem {
     }
 
     public void ArcadeDriveScaled(double speed, double rotation) {
-        diffDrive.arcadeDrive((speed*maxSpeed) * (1 - driveScale) + driveScale, (rotation*maxSpeed)* (1 - rotationScale) + rotationScale, true);
+        diffDrive.arcadeDrive((speed*maxSpeed) * (1 - driveScale) + driveScale, (rotation*maxSpeed)* (1 - rotationScale) + rotationScale, false);
         lastSpeed = speed;
     }
 
     public void TankDrive(double leftSpeed, double rightSpeed) {
-        diffDrive.tankDrive(leftSpeed, rightSpeed);
+        diffDrive.tankDrive(-leftSpeed, -rightSpeed);
     }
 
     public void SetShifter(boolean state) {
@@ -170,11 +170,11 @@ public class DriveTrain extends Subsystem {
     }
 
     public double GetLeftEncoders() {
-        return (leftMasterEncoder.getPosition()/-2 + leftFollowerEncoder.getPosition()/-2) - LeftEncodersOffset;
+        return ((leftMasterEncoder.getPosition()/-2 + leftFollowerEncoder.getPosition()/-2) - LeftEncodersOffset) * 167/201;
     }
 
     public double GetRightEncoders() {
-        return (rightMasterEncoder.getPosition()/2 + rightFollowerEncoder.getPosition()/2) - rightEncodersOffset;
+        return ((rightMasterEncoder.getPosition()/2 + rightFollowerEncoder.getPosition()/2) - rightEncodersOffset) * 167/201;
     }
 
     public double GetLeftEncodersTotal() {
@@ -185,11 +185,11 @@ public class DriveTrain extends Subsystem {
         return (rightMasterEncoder.getPosition()/2 + rightFollowerEncoder.getPosition()/2);
     }
 
-    public void allowDrive(boolean allow) {
+    public void AllowDrive(boolean allow) {
         drivingEnabled = allow;
     }
 
-    public boolean isDrivingAllowed() {
+    public boolean IsDrivingAllowed() {
         return drivingEnabled;
     }
 }

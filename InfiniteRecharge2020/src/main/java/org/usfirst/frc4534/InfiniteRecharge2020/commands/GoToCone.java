@@ -43,7 +43,7 @@ public class GoToCone extends Command {
         //Switch to cone grip pipeline
         Robot.limelight.setPipeline(1);
         //Disable driving
-        Robot.driveTrain.allowDrive(false);
+        Robot.driveTrain.AllowDrive(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -91,7 +91,7 @@ public class GoToCone extends Command {
     @Override
     protected void end() {
         Robot.driveTrain.TankDrive(0,0);
-        Robot.driveTrain.allowDrive(true);
+        Robot.driveTrain.AllowDrive(true);
     }
 
     // Called when another command which requires one or more of the same
@@ -99,6 +99,6 @@ public class GoToCone extends Command {
     @Override
     protected void interrupted() {
         Robot.driveTrain.TankDrive(0,0);
-        Robot.driveTrain.allowDrive(true);
+        Robot.driveTrain.AllowDrive(true);
     }
 }

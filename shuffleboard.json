@@ -369,6 +369,28 @@
               "_source0": "network_table:///SmartDashboard/Game State",
               "_title": "Game State"
             }
+          },
+          "2,0": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/Drive 200 PID",
+              "_title": "Drive 200 PID"
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive",
+              "_title": "Drive"
+            }
           }
         }
       }
@@ -574,20 +596,6 @@
               "_children": {}
             }
           },
-          "4,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Grid Layout",
-              "_title": "Game State",
-              "Layout/Number of columns": 3,
-              "Layout/Number of rows": 3,
-              "Layout/Label position": "BOTTOM",
-              "_children": {}
-            }
-          },
           "4,0": {
             "size": [
               2,
@@ -597,6 +605,17 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Game Timer",
               "_title": "Game Timer"
+            }
+          },
+          "4,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Game State",
+              "_title": "/SmartDashboard/Game State"
             }
           }
         }
@@ -656,6 +675,17 @@
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/Follow Cone",
               "_title": "Follow Cone"
+            }
+          },
+          "4,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive",
+              "_title": "/SmartDashboard/Drive"
             }
           }
         }
