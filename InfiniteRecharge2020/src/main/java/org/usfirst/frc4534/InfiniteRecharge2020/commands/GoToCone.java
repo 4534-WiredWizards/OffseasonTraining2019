@@ -56,27 +56,27 @@ public class GoToCone extends Command {
         float rotation = 0;
         //If angle is high, turn right at propprtional speed
         if (angle > 1) {
-            rotation = (float)(angle/22.5 * 0.5 + 0.5);
+            rotation = (float)(angle/22.5 * 0.2 + 0.35);
         }
         //If angle is low, turn left at proportional speed
         else if (angle < -1) {
-            rotation = (float)(angle/22.5 * 0.5 - 0.5);
+            rotation = (float)(angle/22.5 * 0.2 - 0.35);
         }
         //If the size is less than 120, move closer.
-        if (size < 120) {
+        if (size < 100000) {
             speed = (float)0.6;
         }
         //Go to cone if it is there
         if(Robot.limelight.limelightHasTarget()) {
-            Robot.driveTrain.ArcadeDrive(speed, rotation);
+            Robot.driveTrain.arcadeDrive(-speed, -rotation);
         }
         //if the cone isnt there, but we are in follow offscreen mode, 
         //and the cone was most recently at an angle near the edge, turn in that direction without moving forward.
         if(followOffscreen) {
-            if(lastKnownPosition < -15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.ArcadeDrive(0, -0.5);
-            if(lastKnownPosition < 15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.ArcadeDrive(0, 0.5);
+            if(lastKnownPosition < -15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.arcadeDrive(0, 0.5);
+            if(lastKnownPosition > 15 && !Robot.limelight.limelightHasTarget()) Robot.driveTrain.arcadeDrive(0, -0.5);
             //Track last known angle
-            lastKnownPosition = angle;
+            if (Robot.limelight.limelightHasTarget()) lastKnownPosition = angle;
         }
         
     }
@@ -84,13 +84,13 @@ public class GoToCone extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return size > 120;
+        return size > 10000;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.driveTrain.TankDrive(0,0);
+        Robot.driveTrain.tankDrive(0,0);
         Robot.driveTrain.allowDrive(true);
     }
 
@@ -98,7 +98,7 @@ public class GoToCone extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-        Robot.driveTrain.TankDrive(0,0);
+        Robot.driveTrain.tankDrive(0,0);
         Robot.driveTrain.allowDrive(true);
     }
 }

@@ -55,8 +55,8 @@ public class DriveWithJoystick extends Command {
         speed = speed * 0.85 + 0.15 * Robot.oi.joystick1.getRawAxis(2);
         //Only move if allowed to.
         if (Robot.driveTrain.isDrivingAllowed() == true) {
-            Robot.driveTrain.ArcadeDrive(speed, rotation);
-            Robot.driveTrain.SetShifter(Robot.oi.leftJoystick1.get());
+            Robot.driveTrain.arcadeDrive(speed, rotation);
+            Robot.driveTrain.setShifter(Robot.oi.leftJoystick1.get());
         }
     }
 
@@ -69,13 +69,13 @@ public class DriveWithJoystick extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.driveTrain.TankDrive(0,0);
+        Robot.driveTrain.tankDrive(0,0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-        Robot.driveTrain.TankDrive(0,0);
+        Robot.driveTrain.tankDrive(0,0);
     }
 }
