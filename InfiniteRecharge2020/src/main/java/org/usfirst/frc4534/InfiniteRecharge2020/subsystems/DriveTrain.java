@@ -145,7 +145,7 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void arcadeDrive(double speed, double rotation) {
-        diffDrive.arcadeDrive(speed*maxSpeed, -rotation*maxSpeed, true);
+        diffDrive.arcadeDrive(speed*maxSpeed, rotation*maxSpeed, true);
         lastSpeed = speed;
     }
 

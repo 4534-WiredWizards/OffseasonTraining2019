@@ -47,7 +47,7 @@ public class DriveWithJoystick extends Command {
         //Get joystick positions and set speed and rotation to them
         //Inputs below the inner bound are ignored
         speed = Math.abs(Robot.oi.getJoystick1().getRawAxis(1)) >= innerBound ? Robot.oi.getJoystick1().getRawAxis(1) : 0;
-        rotation = Math.abs(Robot.oi.getJoystick1().getRawAxis(4)) >= innerBound ? -Robot.oi.getJoystick1().getRawAxis(4) : 0;
+        rotation = Math.abs(Robot.oi.getJoystick1().getRawAxis(4)) >= innerBound ? Robot.oi.getJoystick1().getRawAxis(4) : 0;
         //Go into slow speed mode if left bumper is pressed, slow rotation mode if right bumper is pressed
         speed = Robot.oi.leftBumper1.get() ? speed * 0.5 : speed;
         rotation = Robot.oi.rightBumper1.get() ? rotation * 0.5 : rotation;
