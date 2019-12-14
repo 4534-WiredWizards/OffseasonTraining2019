@@ -56,7 +56,7 @@ public class DriveWithJoystick extends Command {
         else speed = speed * 0.85 + 0.15 * Robot.oi.joystick1.getRawAxis(2);
         //Only move if allowed to.
         if (Robot.driveTrain.isDrivingAllowed() == true) {
-            Robot.driveTrain.arcadeDrive(speed, rotation);
+            Robot.driveTrain.arcadeDrive(speed, rotation * 0.85);
             Robot.driveTrain.setShifter(Robot.oi.leftJoystick1.get());
         }
     }
