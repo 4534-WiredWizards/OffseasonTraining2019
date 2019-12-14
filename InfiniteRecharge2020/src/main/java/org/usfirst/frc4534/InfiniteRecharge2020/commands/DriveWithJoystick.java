@@ -52,7 +52,8 @@ public class DriveWithJoystick extends Command {
         speed = Robot.oi.leftBumper1.get() ? speed * 0.5 : speed;
         rotation = Robot.oi.rightBumper1.get() ? rotation * 0.5 : rotation;
         //Descrease speed to 0.85 normal speed, add extra 0.15 from left trigger.
-        speed = speed * 0.85 + 0.15 * Robot.oi.joystick1.getRawAxis(2);
+        if (speed < 0) speed = speed * 0.85 - 0.15 * Robot.oi.joystick1.getRawAxis(2);
+        else speed = speed * 0.85 + 0.15 * Robot.oi.joystick1.getRawAxis(2);
         //Only move if allowed to.
         if (Robot.driveTrain.isDrivingAllowed() == true) {
             Robot.driveTrain.arcadeDrive(speed, rotation);
